@@ -21,4 +21,4 @@ Website in Action
  
 Mobile Website in Action
 
- ![ModakFlix Mobile website demo](demo/mobileWeb.gif)
+ ![ModakFlix Mobile website demo](demo/MobileWeb.gif)
