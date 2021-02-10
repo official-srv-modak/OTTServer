@@ -20,4 +20,4 @@ Website in Action
  
 Mobile Website in Action
 
- ![ModakFlix website demo](demo/mobileWeb.gif)
+ ![ModakFlix Mobile website demo](demo/mobileWeb.gif)
