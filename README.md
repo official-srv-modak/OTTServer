@@ -12,3 +12,12 @@ Had to upload gif because github doesn't support video, so pardon the frame drop
 ModakFlix App in action
 
  ![ModakFlix app demo](demo/demo.gif)
+ 
+
+Website in Action
+
+ ![ModakFlix website demo](demo/website.gif)
+ 
+Mobile Website in Action
+
+ ![ModakFlix website demo](demo/mobileWeb.gif)
