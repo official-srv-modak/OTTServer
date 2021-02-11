@@ -3,7 +3,7 @@ include("reload_disk.php");
 include("path.php"); 
 
 $con = mysqli_connect("localhost", "root", "", "modak_flix");
-$sql = "SELECT * FROM modak_flix.file_system WHERE category='Movies 'ORDER BY name";
+$sql = "SELECT * FROM modak_flix.file_system WHERE category='Movies 'ORDER BY NAME";
 $result = $con->query($sql);
 $rows = array();
 

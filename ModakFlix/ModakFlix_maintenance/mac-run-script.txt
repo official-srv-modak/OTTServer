@@ -1,0 +1,1 @@
+xattr -cr /Volumes/SOURAV/OTTServer/ModakFlix/ModakFlix_maintenance/run.sh
