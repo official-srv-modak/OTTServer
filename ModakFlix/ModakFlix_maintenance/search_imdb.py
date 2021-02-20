@@ -77,6 +77,8 @@ def call_spider(movie_name):
     file_handle.close()
     if(os.path.isfile(json_output_file)):
         os.remove(json_output_file)
+    file_handle = open(json_output_file, "w+")
+    file_handle.close()
     os.system("scrapy crawl spider_imdb -o "+json_output_file)
     file_handle = open(json_output_file, "r+")
     json_output = ""
