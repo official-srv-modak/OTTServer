@@ -1,1 +1,0 @@
-CREATE TABLE `modak_flix`.`file_systems` ( `id` INT NOT NULL AUTO_INCREMENT , `name` LONGTEXT NOT NULL , `category` VARCHAR(20) NOT NULL , `path` LONGTEXT NOT NULL , `language` VARCHAR(20) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
