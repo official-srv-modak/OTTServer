@@ -60,6 +60,7 @@ if ($viability)
         	else
         	{	
             	echo "<p>" . mysqli_error($con) . "</p>".$sql."</br";
+		echo "<p>" . $con->connect_error . "</p></br";
         	}
 		}
 		if($mode === "delete")
