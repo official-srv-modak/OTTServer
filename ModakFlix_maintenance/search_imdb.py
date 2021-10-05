@@ -12,7 +12,8 @@ def get_movies_path():
     file_handle = open("../path_movies.txt", "r")
     path = file_handle.readline().strip()
     file_handle.close()
-    return get_server_path_root()+path
+    #return get_server_path_root()+path
+    return "../"+path
 
 def download_image(image_url, filename):
     ## Set up the image URL and filename
