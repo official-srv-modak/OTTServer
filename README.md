@@ -1,4 +1,8 @@
 # OTTServer
+
+
+ ![ModakFlix app demo](demo/modakflix_banner.png)
+
  An OTT server that can run on any ANT based server like jboss/wildfly, tomcat, weblogic for friends and family. This is essentially a OTT server with web based interface for mobiles, computer and TV which can be used to host a local server, and all the members in that local server can access and enjoy vidoes in the local network. 
 Basically idea is everyone has a hard drive lying around with pirated movies and tv shows. If one need to watch, one has to take the hard drive and then copy it to the PC and then watch which essentially reduces the concurrency and lots of time is wasted and mood is spoiled. 
 
