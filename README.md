@@ -5,7 +5,7 @@ Basically idea is everyone has a hard drive lying around with pirated movies and
 So the simple solution is:- Host the server by downloading this repo, paste it in xampp (you can also do in any server configuration needs personal assistance). Edit the files path_movies.txt and path_tv.txt and give your path to movies and tv shows. Make sure the drive permissions are provided based on your OS. For mac disable SIP if you want to use the external HDD. Voila its done now use the localhost url to go the website. 
 
 
-Want to deploy? Contact 9500166574 or official.srv.modak@gmail.com
+Want to deploy? forllow the link : https://github.com/prasadashu/OTTServer-Deployer
  
 Had to upload gif because github doesn't support video, so pardon the frame drops and stutters. Real app is very smooth depending upon the device
 
@@ -24,3 +24,8 @@ Website in Action
 Mobile Website in Action
 
  ![ModakFlix Mobile website demo](demo/MobileWeb.gif)
+
+
+To deploy the server please follow this link
+
+https://github.com/prasadashu/OTTServer-Deployer
