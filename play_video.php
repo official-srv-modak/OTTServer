@@ -17,7 +17,7 @@
 		 $name = chop($name,".".$extension);
          ?>
         
-      <video class="center" controls id="video">
+      <video class="center" controls id="video" width="640" height="480">
          <source src = "<?php echo $path; ?>" type="video/webm">
       </video>
       <script>
@@ -39,7 +39,7 @@
          window.onload = openFullscreen;
       </script>
    </head>
-   <body onload="openFullscreen()">
+   <body onload="openFullscreen()" style="background-color:black;">
       <script>
          var elem = document.getElementById("video");
          function openFullscreen() {
