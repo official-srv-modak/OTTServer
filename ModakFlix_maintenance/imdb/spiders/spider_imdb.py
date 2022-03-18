@@ -4,9 +4,14 @@ import json
 
 
 def handle_list(List):
-    for val in List:
-        if val.find("more credit") != -1 or val.find("See full cast & crew") != -1:
-            List[List.index(val)] = "etc."
+    """for val in List:
+        if val.find("All cast & crew") != -1 or val.find("See more cast details at IMDbPro") != -1:
+            List.remove("All cast & crew")
+            if "etc." not in List:
+                List[List.index(val)] = "etc."""
+    List.remove("All cast & crew")
+    List.remove("See more cast details at IMDbPro")
+    List.append("etc.")
     return List
 
 class SpiderImdbSpider(Spider):
@@ -24,15 +29,15 @@ class SpiderImdbSpider(Spider):
         json_data_collector['image_src'] = response.xpath("//*[@class='poster']/a/img/@src").extract_first()
         json_data_collector['description'] = response.xpath("//*[@class='summary_text']/text()").extract_first().strip()
         json_data_collector['rating'] = response.xpath("//*[@itemprop='ratingValue']/text()").extract_first()"""
-        crews = response.xpath("//*[@class='PrincipalCredits__PrincipalCreditsPanelWideScreen-hdn81t-0 iGxbgr']")
+        crews = response.xpath("//*[@class='ipc-metadata-list ipc-metadata-list--dividers-all sc-11eed019-10 fcovio ipc-metadata-list--base']")
         
-        url_image = response.xpath("//*[@class='Media__PosterContainer-sc-1x98dcb-1 dGdktI']")
-        srv = url_image.xpath(".//*[@class='ipc-lockup-overlay ipc-focusable']/@href").extract_first()
+       # url_image = response.xpath("//*[@class='ipc-lockup-overlay ipc-focusable']")
+        srv = response.xpath(".//*[@class='ipc-lockup-overlay ipc-focusable']/@href").extract_first()
         print("################## "+str(srv))
 
         if not srv:
-            url_image = response.xpath("//*[@class='Media__MediaParentNoVideo-sc-1x98dcb-6 hANGUH']")
-            srv = url_image.xpath(".//*[@class='ipc-lockup-overlay ipc-focusable']/@href").extract_first()
+           # url_image = response.xpath("//*[@class='Media__MediaParentNoVideo-sc-1x98dcb-6 hANGUH']")
+            srv = response.xpath(".//*[@class='ipc-lockup-overlay ipc-focusable']/@href").extract_first()
             print("################## "+str(srv))
         
         url_image_file = open("url_image.txt", "w+")
@@ -51,7 +56,8 @@ class SpiderImdbSpider(Spider):
         """json_data_collector['crew'] = crew_data"""
 
         yield {"title" : response.xpath("//title/text()").extract_first(),
-            "image_src" : response.xpath("//*[@class='poster']/a/img/@src").extract_first(),
-            "description" : response.xpath("//*[@class='GenresAndPlot__TextContainerBreakpointXL-cum89p-2 gCtawA']/text()").extract(),
-            "rating" : response.xpath("//*[@class='AggregateRatingButton__RatingScore-sc-1ll29m0-1 iTLWoV']/text()").extract_first(),
+            #"image_src" : response.xpath("//*[@class='ipc-lockup-overlay ipc-focusable']/a/img/@src").extract_first(),
+            "image_src": response.xpath("//*[@class='ipc-lockup-overlay ipc-focusable']/text()").extract_first(),
+            "description" : response.xpath("//*[@class='sc-14389611-1 hGKuud']/text()").extract(),
+            "rating" : response.xpath("//*[@class='sc-7ab21ed2-1 jGRxWM']/text()").extract_first(),
             "crews" : crew_data}

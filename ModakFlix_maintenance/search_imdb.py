@@ -12,8 +12,7 @@ def get_movies_path():
     file_handle = open("../path_movies.txt", "r")
     path = file_handle.readline().strip()
     file_handle.close()
-    #return get_server_path_root()+path
-    return "../"+path
+    return get_server_path_root()+path
 
 def download_image(image_url, filename):
     ## Set up the image URL and filename
@@ -105,7 +104,12 @@ def construct_description_text(json_output, directory_path):
     description = "Summary : "
     for des in description_list:
         description += des.strip()+" "
-    description += "\n\nIMDB Rating : "+json_obj["rating"]+"/10"
+    jsonDic = json.loads(json.dumps(json_obj))
+    ratingStr = jsonDic["rating"]
+    if ratingStr != None:
+        description += "\n\nIMDB Rating : "+ratingStr+"/10"
+    else:
+        description += "\n\nIMDB Rating : "+"/10"
     crews = json_obj["crews"]
     for crew in crews:
         description += "\n\n"+crew+" "
