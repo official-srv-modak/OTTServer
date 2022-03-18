@@ -46,6 +46,9 @@ class SpiderImdbSpider(Spider):
         url_image_file.close()
 
         crew_data = {}
+        des = response.xpath("//*[@class='sc-14389611-1 hGKuud']/text()").extract()
+        certificate = response.xpath("//*[@class='ipc-link ipc-link--baseAlt ipc-link--inherit-color sc-52284603-1 ifnKcw']/text()").extract()
+        des[0] = des[0] + "\n\nRated : "+certificate[1]
         for crew in crews:
             """crew_type_list.append(crew.xpath(".//h4/text()").extract_first())
             crew_list.append(crew.xpath(".//a/text()").extract())"""
@@ -58,6 +61,6 @@ class SpiderImdbSpider(Spider):
         yield {"title" : response.xpath("//title/text()").extract_first(),
             #"image_src" : response.xpath("//*[@class='ipc-lockup-overlay ipc-focusable']/a/img/@src").extract_first(),
             "image_src": response.xpath("//*[@class='ipc-lockup-overlay ipc-focusable']/text()").extract_first(),
-            "description" : response.xpath("//*[@class='sc-14389611-1 hGKuud']/text()").extract(),
+            "description" : des,
             "rating" : response.xpath("//*[@class='sc-7ab21ed2-1 jGRxWM']/text()").extract_first(),
             "crews" : crew_data}
