@@ -9,9 +9,23 @@ def handle_list(List):
             List.remove("All cast & crew")
             if "etc." not in List:
                 List[List.index(val)] = "etc."""
-    List.remove("All cast & crew")
-    List.remove("See more cast details at IMDbPro")
-    List.append("etc.")
+    try:
+        List.remove("All cast & crew")
+    except ValueError:
+        print("Values not in list")
+        pass
+
+    try:
+        List.remove("See more cast details at IMDbPro")
+    except ValueError:
+        print("Values not in list")
+        pass
+
+    try:
+        List.append("etc.")
+    except ValueError:
+        print("Values not in list")
+        pass
     return List
 
 class SpiderImdbSpider(Spider):
@@ -29,7 +43,7 @@ class SpiderImdbSpider(Spider):
         json_data_collector['image_src'] = response.xpath("//*[@class='poster']/a/img/@src").extract_first()
         json_data_collector['description'] = response.xpath("//*[@class='summary_text']/text()").extract_first().strip()
         json_data_collector['rating'] = response.xpath("//*[@itemprop='ratingValue']/text()").extract_first()"""
-        crews = response.xpath("//*[@class='ipc-metadata-list ipc-metadata-list--dividers-all sc-11eed019-10 fcovio ipc-metadata-list--base']")
+        crews = response.xpath("//*[@class='ipc-metadata-list ipc-metadata-list--dividers-all title-pc-list ipc-metadata-list--baseAlt']")
         
        # url_image = response.xpath("//*[@class='ipc-lockup-overlay ipc-focusable']")
         srv = response.xpath(".//*[@class='ipc-lockup-overlay ipc-focusable']/@href").extract_first()
@@ -46,9 +60,12 @@ class SpiderImdbSpider(Spider):
         url_image_file.close()
 
         crew_data = {}
-        des = response.xpath("//*[@class='sc-14389611-1 hGKuud']/text()").extract()
-        certificate = response.xpath("//*[@class='ipc-link ipc-link--baseAlt ipc-link--inherit-color sc-52284603-1 ifnKcw']/text()").extract()
-        des[0] = des[0] + "\n\nRated : "+certificate[1]
+        des = response.xpath("//*[@class='sc-466bb6c-0 kJJttH']/text()").extract()
+        certificate = response.xpath("//*[@class='ipc-link ipc-link--baseAlt ipc-link--inherit-color']/text()").extract()
+        if len(des) > 0 and len(certificate) > 0:
+            des[0] = des[0] + "\n\nRated : "+certificate[5]
+        else:
+            print("########## ERROR!!!!: des link changed")
         for crew in crews:
             """crew_type_list.append(crew.xpath(".//h4/text()").extract_first())
             crew_list.append(crew.xpath(".//a/text()").extract())"""
@@ -62,5 +79,5 @@ class SpiderImdbSpider(Spider):
             #"image_src" : response.xpath("//*[@class='ipc-lockup-overlay ipc-focusable']/a/img/@src").extract_first(),
             "image_src": response.xpath("//*[@class='ipc-lockup-overlay ipc-focusable']/text()").extract_first(),
             "description" : des,
-            "rating" : response.xpath("//*[@class='sc-7ab21ed2-1 jGRxWM']/text()").extract_first(),
+            "rating" : response.xpath("//*[@class='sc-bde20123-1 iZlgcd']/text()").extract_first(),
             "crews" : crew_data}
