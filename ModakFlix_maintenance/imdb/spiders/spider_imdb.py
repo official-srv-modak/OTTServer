@@ -60,10 +60,10 @@ class SpiderImdbSpider(Spider):
         url_image_file.close()
 
         crew_data = {}
-        des = response.xpath("//*[@class='sc-466bb6c-0 kJJttH']/text()").extract()
+        des = response.xpath("//*[@class='sc-2d37a7c7-0 ftDfUj']/text()").extract()
         certificate = response.xpath("//*[@class='ipc-link ipc-link--baseAlt ipc-link--inherit-color']/text()").extract()
         if len(des) > 0 and len(certificate) > 0:
-            des[0] = des[0] + "\n\nRated : "+certificate[5]
+            des[0] = des[0] + "\n\nRated : "+certificate[6]
         else:
             print("########## ERROR!!!!: des link changed")
         for crew in crews:

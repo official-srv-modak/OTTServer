@@ -1,6 +1,7 @@
 from search_imdb import *
 import time, os
-
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
 def run_maintenance_explicit():
     dir_path = os.path.dirname(os.path.realpath(__file__))
     print(dir_path)

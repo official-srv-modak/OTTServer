@@ -18,7 +18,7 @@ class ImdbImageSpiderSpider(Spider):
 
     def parse(self, response):
         
-        image_src = response.xpath("//*[@class='sc-7c0a9e7c-2 bkptFa']/img/@src").extract_first()
+        image_src = response.xpath("//*[@class='sc-7c0a9e7c-2 hXyMhR']/img/@src").extract_first()
         print("################## "+image_src)
         json_obj_file = open ('output.json', "r")
         data_temp = json_obj_file.readline()
