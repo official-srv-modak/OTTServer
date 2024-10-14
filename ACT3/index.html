@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Display</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function loadWeatherData() {
+            var apiKey = '1366070d66abfe71b89ba723a0c3b66c';
+            var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=Toronto&units=metric&appid=' + apiKey;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    var temperature = data.main.temp;
+                    var feelsLike = data.main.feels_like;
+                    var minTemp = data.main.temp_min;
+                    var maxTemp = data.main.temp_max;
+                    var humidity = data.main.humidity;
+                    var description = data.weather[0].description;
+                    var windSpeed = data.wind.speed;
+                    var sunrise = new Date(data.sys.sunrise * 1000).toLocaleTimeString();
+                    var sunset = new Date(data.sys.sunset * 1000).toLocaleTimeString();
+
+                    document.getElementById('temperature').innerText = temperature + ' Celcius';
+                    document.getElementById('feelsLike').innerText = feelsLike + ' Celcius';
+                    document.getElementById('minTemp').innerText = minTemp + ' Celcius';
+                    document.getElementById('maxTemp').innerText = maxTemp + ' Celcius';
+                    document.getElementById('humidity').innerText = humidity + '%';
+                    document.getElementById('description').innerText = description;
+                    document.getElementById('windSpeed').innerText = windSpeed + ' m/s';
+                    document.getElementById('sunrise').innerText = sunrise;
+                    document.getElementById('sunset').innerText = sunset;
+                })
+                .catch(error => {
+                    console.error('Error fetching weather data:', error);
+                });
+        }
+    </script>
+</head>
+<body>
+
+<h1>Weather of Toronto</h1>
+
+<button type="button" onclick="loadWeatherData()">Display the Weather</button>
+<br><br>
+<table>
+    <tr>
+        <td><strong>Temperature</strong></td>
+        <td id="temperature"></td>
+    </tr>
+    <tr>
+        <td><strong>Feels Like</strong></td>
+        <td id="feelsLike"></td>
+    </tr>
+    <tr>
+        <td><strong>Min Temperature</strong></td>
+        <td id="minTemp"></td>
+    </tr>
+    <tr>
+        <td><strong>Max Temperature</strong></td>
+        <td id="maxTemp"></td>
+    </tr>
+    <tr>
+        <td><strong>Humidity</strong></td>
+        <td id="humidity"></td>
+    </tr>
+    <tr>
+        <td><strong>Description</strong></td>
+        <td id="description"></td>
+    </tr>
+    <tr>
+        <td><strong>Wind Speed</strong></td>
+        <td id="windSpeed"></td>
+    </tr>
+    <tr>
+        <td><strong>Sunrise</strong></td>
+        <td id="sunrise"></td>
+    </tr>
+    <tr>
+        <td><strong>Sunset</strong></td>
+        <td id="sunset"></td>
+    </tr>
+</table>
+
+</body>
+</html>

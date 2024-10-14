@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title> ITC5202 - Week 8 </title>
+    <script>
+      function openJSON(){
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) 
+            myFunction(this);
+          }
+        xmlhttp.open("GET", "Activity2_data.JSON", true); // wrong file name
+        xmlhttp.send();
+      }
+      function myFunction(Data) {  
+          var myObj = JSON.parse(Data.responseText);
+          document.getElementById("demo").innerHTML = myObj.name;
+          
+      }
+    </script>
+  </head>
+
+<body onload=openJSON()>
+  <p id="demo"></p>
+</body>
+
+</html>
